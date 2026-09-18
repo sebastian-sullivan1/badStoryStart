@@ -1,8 +1,32 @@
-She had a body that reached out and slapped my face like a thousand-pound ham tossed from a speeding truck.
+public String toString(String solution) {
+    String GREEN_BACK = "\u001b[42;1m";
+    String YELLOW_BACK = "\u001b[43;1m";
+    String GRAY_BACK = "\u001B[100m";
+    String RESET = "\u001b[0m";
+    String WHITE_TEXT = "\u001B[37m";
+    String guess = new String(this.word);
 
+    StringBuilder result = new StringBuilder(WHITE_TEXT);
 
-Realising that her symptoms indicated a virtually undetectable, fast acting neurotoxin, CIA coroner Quinn Abner frantically wrote up the details, lay on the floor and, as a professional courtesy, did her best to draw a chalk outline of herself. 
+    for (int i = 0; i < 5; i++) {
+        char currentChar = this.word[i];
+        
+        if (color(guess, solution)[i] == 2) {
+            result.append(GREEN_BACK).append(currentChar);
+        } else if (color(guess, solution)[i] == 1) {
+            result.append(YELLOW_BACK).append(currentChar);
+        } else {
+            result.append(GRAY_BACK).append(currentChar);
+        }
+    }
 
+    result.append(RESET); 
+    return result.toString();
+}
 
-She was a pretty woman; more specifically she was the kind of pretty woman who had an hourlong skincare routine that made her look either nice or like a glazed donut, depending on how attracted to her you were.   
+    public static void main(String[] args) {
+    char[] testWord = {'M', 'M', 'I', 'C', 'S'};
+    WordleWord wordObj = new WordleWord(testWord);
+    System.out.println("toString output: " + wordObj.toString("TUMOR"));
+}
 
