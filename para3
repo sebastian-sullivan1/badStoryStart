@@ -1,0 +1,27 @@
+public byte[] colors(WWord guess, WWord answer) {
+        byte [] c = new byte[5];
+        byte [] g = new byte[5];
+        byte [] a = new byte[5];
+        for (byte i = 0; i < 5; i++) {
+            g[i] = (byte) guess.getChar(i);
+            a[i] = (byte) answer.getChar(i);
+        }
+        for (byte i = 0; i < 5; i++) {
+            if (g[i] == a[i]) {
+                c[i] = 2;
+                g[i] = -1;
+                a[i] = -2;
+            }
+        }
+        for (byte i = 0; i < 5; i++) {
+            for (byte j = 0; j < 5; j++) {
+                if (g[i] == a[j]) {
+                    c[i] = 1;
+                    g[i] = -1;
+                    a[j] = -2;
+                    j = 5;
+                }
+            } 
+        }
+        return c;
+    }
