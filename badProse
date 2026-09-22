@@ -30,3 +30,624 @@ public String toString(String solution) {
     System.out.println("toString output: " + wordObj.toString("TUMOR"));
 }
 
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+
+
+public class WordleScan {
+    private ArrayList<String> allWordsList;
+    private ArrayList<String> allSolutionList; 
+    private ArrayList<String> a1List; 
+    private ArrayList<String> a2List;
+    private ArrayList<String> a3List;
+    private ArrayList<String> a4List;
+    private ArrayList<String> a5List;
+    private ArrayList<String> bList;
+    private ArrayList<String> cList;
+    private ArrayList<String> dList;
+    private ArrayList<String> e1List;
+    private ArrayList<String> e2List;
+    private ArrayList<String> e3List;
+    private ArrayList<String> e4List;
+    private ArrayList<String> e5List;
+    private ArrayList<String> fList;
+    private ArrayList<String> gList;
+    private ArrayList<String> hList;
+    private ArrayList<String> kList;
+    private ArrayList<String> lList;
+    private ArrayList<String> mList;
+    private ArrayList<String> nList;
+    private ArrayList<String> pList;
+    private ArrayList<String> rList; 
+    private ArrayList<String> sList;
+    private ArrayList<String> tList;
+    private ArrayList<String> vList;
+    private ArrayList<String> wList;   
+    private ArrayList<String> i1List;
+    private ArrayList<String> i2List;
+    private ArrayList<String> i3List;
+    private ArrayList<String> i4List;
+    private ArrayList<String> i5List;
+    private ArrayList<String> o1List;
+    private ArrayList<String> o2List;
+    private ArrayList<String> o3List;
+    private ArrayList<String> o4List;
+    private ArrayList<String> o5List;
+    private ArrayList<String> u1List;
+    private ArrayList<String> u2List;
+    private ArrayList<String> u3List;
+    private ArrayList<String> u4List;
+    private ArrayList<String> u5List;
+    private ArrayList<String> yList;
+    private ArrayList<String> jList;
+    private ArrayList<String> qList;
+    private ArrayList<String> xList;
+    private ArrayList<String> zList;
+
+    private ArrayList<String> noAlist;
+    private ArrayList<String> noBlist;
+    private ArrayList<String> noClist;
+    private ArrayList<String> noDlist;
+    private ArrayList<String> noElist;
+    private ArrayList<String> noFlist;
+    private ArrayList<String> noGlist;
+    private ArrayList<String> noHlist;
+    private ArrayList<String> noIlist;
+    private ArrayList<String> noJlist;
+    private ArrayList<String> noKlist;
+    private ArrayList<String> noLlist;
+    private ArrayList<String> noMlist;
+    private ArrayList<String> noNlist;
+    private ArrayList<String> noOlist;
+    private ArrayList<String> noPlist;
+    private ArrayList<String> noQlist;
+    private ArrayList<String> noRlist;
+    private ArrayList<String> noSlist;  
+    private ArrayList<String> noTlist;
+    private ArrayList<String> noUlist;
+    private ArrayList<String> noVlist;
+    private ArrayList<String> noWlist;
+    private ArrayList<String> noXlist;
+    private ArrayList<String> noYlist;  
+    private ArrayList<String> noZlist;
+
+    public WordleScan() {
+        allWordsList = new ArrayList<>();
+        allSolutionList = new ArrayList<>();
+        a1List = new ArrayList<>();
+        a2List = new ArrayList<>();
+        a3List = new ArrayList<>();
+        a4List = new ArrayList<>();
+        a5List = new ArrayList<>();
+        bList = new ArrayList<>();
+        cList = new ArrayList<>();
+        dList = new ArrayList<>();
+        e1List = new ArrayList<>();
+        e2List = new ArrayList<>();
+        e3List = new ArrayList<>();
+        e4List = new ArrayList<>();
+        e5List = new ArrayList<>();
+        fList = new ArrayList<>();
+        gList = new ArrayList<>();
+        hList = new ArrayList<>();
+        kList = new ArrayList<>();
+        lList = new ArrayList<>();
+        mList = new ArrayList<>();
+        nList = new ArrayList<>();
+        pList = new ArrayList<>();
+        rList = new ArrayList<>();
+        sList = new ArrayList<>();
+        tList = new ArrayList<>();
+        vList = new ArrayList<>();
+        wList = new ArrayList<>();
+        i1List = new ArrayList<>();
+        i2List = new ArrayList<>();
+        i3List = new ArrayList<>();
+        i4List = new ArrayList<>();
+        i5List = new ArrayList<>();
+        o1List = new ArrayList<>();
+        o2List = new ArrayList<>();
+        o3List = new ArrayList<>();
+        o4List = new ArrayList<>();
+        o5List = new ArrayList<>();
+        u1List = new ArrayList<>();
+        u2List = new ArrayList<>();
+        u3List = new ArrayList<>();
+        u4List = new ArrayList<>();
+        u5List = new ArrayList<>();
+        yList = new ArrayList<>();
+        jList = new ArrayList<>();
+        qList = new ArrayList<>();
+        xList = new ArrayList<>();
+        zList = new ArrayList<>();
+        noAlist = new ArrayList<>();
+        noBlist = new ArrayList<>();
+        noClist = new ArrayList<>();
+        noDlist = new ArrayList<>();    
+        noElist = new ArrayList<>();
+        noFlist = new ArrayList<>();
+        noGlist = new ArrayList<>();
+        noHlist = new ArrayList<>();
+        noIlist = new ArrayList<>();
+        noJlist = new ArrayList<>();
+        noKlist = new ArrayList<>();
+        noLlist = new ArrayList<>();
+        noMlist = new ArrayList<>();
+        noNlist = new ArrayList<>();
+        noOlist = new ArrayList<>();
+        noPlist = new ArrayList<>();
+        noQlist = new ArrayList<>();
+        noRlist = new ArrayList<>();
+        noSlist = new ArrayList<>();  
+        noTlist = new ArrayList<>();
+        noUlist = new ArrayList<>();
+        noVlist = new ArrayList<>();
+        noWlist = new ArrayList<>();
+        noXlist = new ArrayList<>();
+        noYlist = new ArrayList<>();  
+        noZlist = new ArrayList<>();
+
+        try {
+            File a = new File("AllWordleWords copy.txt");
+            Scanner scanner = new Scanner(a);
+            scanner.useDelimiter("\",\"");
+            while (scanner.hasNext()) {
+                String nextWord = scanner.next();
+                allWordsList.add(nextWord);
+            }
+            scanner.close();
+
+            File b = new File("AllWordleSolutions copy.txt");
+            Scanner scanner2 = new Scanner(b);
+            scanner2.useDelimiter("\",\"");
+            while (scanner2.hasNext()) {
+                String nextWord = scanner2.next();
+                allSolutionList.add(nextWord);
+                 if(nextWord.substring(0, 1).equals("a"))
+                a1List.add(nextWord);
+                 if(nextWord.substring(1, 2).equals("a"))
+                a2List.add(nextWord);
+                 if(nextWord.substring(2, 3).equals("a"))
+                a3List.add(nextWord);
+                 if(nextWord.substring(3, 4).equals("a"))
+                a4List.add(nextWord);
+                 if(nextWord.substring(4, 5).equals("a"))
+                a5List.add(nextWord);
+                 if(nextWord.substring(0, 1).equals("e"))
+                e1List.add(nextWord);
+                 if(nextWord.substring(1, 2).equals("e"))
+                e2List.add(nextWord);
+                    if(nextWord.substring(2, 3).equals("e"))
+                e3List.add(nextWord);
+                 if(nextWord.substring(3, 4).equals("e"))
+                e4List.add(nextWord);
+                 if(nextWord.substring(4, 5).equals("e"))
+                e5List.add(nextWord);
+                 if(nextWord.substring(0, 1).equals("i"))
+                i1List.add(nextWord);
+                 if(nextWord.substring(1, 2).equals("i"))
+                i2List.add(nextWord);
+                 if(nextWord.substring(2, 3).equals("i"))
+                i3List.add(nextWord);
+                 if(nextWord.substring(3, 4).equals("i"))
+                i4List.add(nextWord);
+                 if(nextWord.substring(4, 5).equals("i"))
+                i5List.add(nextWord);
+                 if(nextWord.substring(0, 1).equals("o"))
+                o1List.add(nextWord);
+                 if(nextWord.substring(1, 2).equals("o"))
+                o2List.add(nextWord);
+                 if(nextWord.substring(2, 3).equals("o"))
+                o3List.add(nextWord);
+                 if(nextWord.substring(3, 4).equals("o"))
+                o4List.add(nextWord);
+                 if(nextWord.substring(4, 5).equals("o"))
+                o5List.add(nextWord);
+                 if(nextWord.substring(0, 1).equals("u"))
+                u1List.add(nextWord);
+                 if(nextWord.substring(1, 2).equals("u"))
+                u2List.add(nextWord);
+                 if(nextWord.substring(2, 3).equals("u"))
+                u3List.add(nextWord);
+                 if(nextWord.substring(3, 4).equals("u"))
+                u4List.add(nextWord);
+                 if(nextWord.substring(4, 5).equals("u"))
+                u5List.add(nextWord);
+                 if(nextWord.contains("y"))
+                yList.add(nextWord);
+                 if(nextWord.contains("b"))
+                bList.add(nextWord);
+                 if(nextWord.contains("c"))
+                cList.add(nextWord);
+                 if(nextWord.contains("d"))
+                dList.add(nextWord);
+                 if(nextWord.contains("f"))
+                fList.add(nextWord);
+                 if(nextWord.contains("g"))
+                gList.add(nextWord);
+                 if(nextWord.contains("h"))
+                hList.add(nextWord);
+                 if(nextWord.contains("k"))
+                kList.add(nextWord);
+                 if(nextWord.contains("l"))
+                lList.add(nextWord);
+                 if(nextWord.contains("m"))
+                mList.add(nextWord);
+                 if(nextWord.contains("n"))
+                nList.add(nextWord);
+                 if(nextWord.contains("p"))
+                pList.add(nextWord);
+                 if(nextWord.contains("r"))
+                rList.add(nextWord);
+                 if(nextWord.contains("s"))
+                sList.add(nextWord);
+                 if(nextWord.contains("t"))
+                tList.add(nextWord);
+                 if(nextWord.contains("v"))
+                vList.add(nextWord);
+                 if(nextWord.contains("w"))
+                wList.add(nextWord);
+
+                 if(!nextWord.contains("a"))
+                noAlist.add(nextWord);
+                 if(!nextWord.contains("b"))
+                noBlist.add(nextWord);  
+                 if(!nextWord.contains("c"))
+                noClist.add(nextWord);
+                 if(!nextWord.contains("d"))
+                noDlist.add(nextWord);
+                 if(!nextWord.contains("e"))
+                noElist.add(nextWord);
+                 if(!nextWord.contains("f"))
+                noFlist.add(nextWord);
+                 if(!nextWord.contains("g"))
+                noGlist.add(nextWord);
+                 if(!nextWord.contains("h"))
+                noHlist.add(nextWord);
+                 if(!nextWord.contains("i"))
+                noIlist.add(nextWord);
+                 if(!nextWord.contains("j"))
+                noJlist.add(nextWord);
+                 if(!nextWord.contains("k"))
+                noKlist.add(nextWord);
+                 if(!nextWord.contains("l"))
+                noLlist.add(nextWord);
+                 if(!nextWord.contains("m"))
+                noMlist.add(nextWord);
+                 if(!nextWord.contains("n"))
+                noNlist.add(nextWord);
+                 if(!nextWord.contains("o"))
+                noOlist.add(nextWord);
+                 if(!nextWord.contains("p"))
+                noPlist.add(nextWord);
+                 if(!nextWord.contains("q"))
+                noQlist.add(nextWord);
+                 if(!nextWord.contains("r"))
+                noRlist.add(nextWord);
+                 if(!nextWord.contains("s"))
+                noSlist.add(nextWord);
+                 if(!nextWord.contains("t"))
+                noTlist.add(nextWord);
+                 if(!nextWord.contains("u"))
+                noUlist.add(nextWord);
+                 if(!nextWord.contains("v"))
+                noVlist.add(nextWord);
+                 if(!nextWord.contains("w"))
+                noWlist.add(nextWord);
+                 if(!nextWord.contains("x"))
+                noXlist.add(nextWord);
+                 if(!nextWord.contains("y"))
+                noYlist.add(nextWord);
+                 if(!nextWord.contains("z"))
+                noZlist.add(nextWord);
+
+            }
+            scanner2.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found: " + e.getMessage());
+        }
+
+
+    }
+
+    public ArrayList<String> getAllWords() {
+        return allWordsList;
+    }
+
+    public ArrayList<String> getSolutions() {
+        return allSolutionList;
+    }
+
+    public ArrayList<String> getA1List() {
+        return a1List;
+    }
+
+    public ArrayList<String> getA2List() {
+        return a2List;
+    }
+
+    public ArrayList<String> getA3List() {
+        return a3List;
+    }
+
+    public ArrayList<String> getA4List() {
+        return a4List;
+    }
+
+    public ArrayList<String> getA5List() {
+        return a5List;
+    }
+
+    public ArrayList<String> getE1List() {
+        return e1List;
+    }
+
+    public ArrayList<String> getE2List() {
+        return e2List;
+    }
+
+    public ArrayList<String> getE3List() {
+        return e3List;
+    }
+
+    public ArrayList<String> getE4List() {
+        return e4List;
+    }
+
+    public ArrayList<String> getE5List() {
+        return e5List;
+    }
+
+    public ArrayList<String> getI1List() {
+        return i1List;
+    }
+
+    public ArrayList<String> getI2List() {
+        return i2List;
+    }
+
+    public ArrayList<String> getI3List() {
+        return i3List;
+    }
+
+    public ArrayList<String> getI4List() {
+        return i4List;
+    }
+
+    public ArrayList<String> getI5List() {
+        return i5List;
+    }
+
+    public ArrayList<String> getO1List() {
+        return o1List;
+    }
+
+    public ArrayList<String> getO2List() {
+        return o2List;
+    }
+
+    public ArrayList<String> getO3List() {
+        return o3List;
+    }
+
+    public ArrayList<String> getO4List() {
+        return o4List;
+    }
+
+    public ArrayList<String> getO5List() {
+        return o5List;
+    }
+
+    public ArrayList<String> getU1List() {
+        return u1List;
+    }
+
+    public ArrayList<String> getU2List() {
+        return u2List;
+    }
+
+    public ArrayList<String> getU3List() {
+        return u3List;
+    }
+
+    public ArrayList<String> getU4List() {
+        return u4List;
+    }
+
+    public ArrayList<String> getU5List() {
+        return u5List;
+    }
+
+    public ArrayList<String> getJList() {
+        return jList;
+    }
+
+    public ArrayList<String> getQList() {
+        return qList;
+    }
+
+    public ArrayList<String> getXList() {
+        return xList;
+    }
+
+    public ArrayList<String> getYList() {
+        return yList;
+    }
+
+    public ArrayList<String> getBList() {
+        return bList;
+    }
+
+    public ArrayList<String> getCList() {
+        return cList;
+    }
+
+    public ArrayList<String> getDList() {
+        return dList;
+    }
+
+    public ArrayList<String> getFList() {
+        return fList;
+    }
+
+    public ArrayList<String> getGList() {
+        return gList;
+    }
+
+    public ArrayList<String> getHList() {
+        return hList;
+    }
+
+    public ArrayList<String> getKList() {
+        return kList;
+    }
+
+    public ArrayList<String> getLList() {
+        return lList;
+    }
+
+    public ArrayList<String> getMList() {
+        return mList;
+    }
+
+    public ArrayList<String> getNList() {
+        return nList;
+    }
+
+    public ArrayList<String> getPList() {
+        return pList;
+    }
+
+    public ArrayList<String> getRList() {
+        return rList;
+    }
+
+    public ArrayList<String> getSList() {
+        return sList;
+    }
+
+    public ArrayList<String> getTList() {
+        return tList;
+    }
+
+    public ArrayList<String> getVList() {
+        return vList;
+    }
+
+    public ArrayList<String> getWList() {
+        return wList;
+    }
+
+    public ArrayList<String> getZList() {
+        return zList;
+    }
+
+    public ArrayList<String> getNoAList() {
+        return noAlist;
+    }
+
+    public ArrayList<String> getNoBList() {
+        return noBlist;
+    }
+
+    public ArrayList<String> getNoCList() {
+        return noClist;
+    }
+
+    public ArrayList<String> getNoDList() {
+        return noDlist;
+    }
+
+    public ArrayList<String> getNoEList() {
+        return noElist;
+    }
+
+    public ArrayList<String> getNoFList() {
+        return noFlist;
+    }
+
+    public ArrayList<String> getNoGList() {
+        return noGlist;
+    }
+
+    public ArrayList<String> getNoHList() {
+        return noHlist;
+    }
+
+    public ArrayList<String> getNoIList() {
+        return noIlist;
+    }
+
+    public ArrayList<String> getNoJList() {
+        return noJlist;
+    }
+
+    public ArrayList<String> getNoKList() {
+        return noKlist;
+    }
+
+    public ArrayList<String> getNoLList() {
+        return noLlist;
+    }
+
+    public ArrayList<String> getNoMList() {
+        return noMlist;
+    }
+
+    public ArrayList<String> getNoNList() {
+        return noNlist;
+    }
+
+    public ArrayList<String> getNoOList() {
+        return noOlist;
+    }
+
+    public ArrayList<String> getNoPList() {
+        return noPlist;
+    }
+
+    public ArrayList<String> getNoQList() {
+        return noQlist;
+    }
+
+    public ArrayList<String> getNoRList() {
+        return noRlist;
+    }
+
+    public ArrayList<String> getNoSList() {
+        return noSlist;
+    }
+
+    public ArrayList<String> getNoTList() {
+        return noTlist;
+    }
+
+    public ArrayList<String> getNoUList() {
+        return noUlist;
+    }
+
+    public ArrayList<String> getNoVList() {
+        return noVlist;
+    }
+
+    public ArrayList<String> getNoWList() {
+        return noWlist;
+    }
+
+    public ArrayList<String> getNoXList() {
+        return noXlist;
+    }
+
+    public ArrayList<String> getNoYList() {
+        return noYlist;
+    }
+
+    public ArrayList<String> getNoZList() {
+        return noZlist;
+    }
+
+}
+
+
