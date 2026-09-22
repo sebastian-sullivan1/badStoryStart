@@ -1,0 +1,96 @@
+import java.util.ArrayList;
+public class WordleWord {
+    private char[] word;
+    private WordleScan scan;
+    public WordleWord(String word){
+        this.word = new char[5];
+        for(int i = 0; i<5;i++){
+            this.word[i] = word.charAt(i);
+        }
+        this.scan = new WordleScan();
+    }
+    public WordleWord(){
+        this.word = new char[5];
+        this.scan = new WordleScan();
+    }
+
+    public byte getChar(int index){
+        return (byte) word[index];
+    }
+    
+    public byte [] color(String solution){
+        byte[] result = new byte[5];
+        byte[] solutionArray = new byte[5];
+        byte[] guessArray = new byte[5];
+        for(byte i = 0; i < 5; i++){
+            solutionArray[i] = (byte) solution.charAt(i);
+            guessArray[i] = (byte) this.word[i];
+        }
+        for(byte i = 0; i<5;i++){
+            if(guessArray[i] == solutionArray[i]){
+                result[i] = 2;
+                solutionArray[i] = -1;
+            }
+        }
+        for(byte f = 0; f<5;f++){
+                boolean there = false;
+                byte track = 0;
+                while(! there && track<solutionArray.length){
+                    if(solutionArray[track] == guessArray[f]){
+                        result[f] = 1;
+                        there = true;
+                        solutionArray[track] = -1;
+                    }
+                    track++;
+                }
+        }
+        return result;
+    }
+    public ArrayList<String> limitArray(String word){
+        ArrayList<String> newList = scan.getAllWordsList();
+        WordleWord wordleWord = new WordleWord(word);
+        for(int i = 0; i<newList.size();i++){
+            byte result[] = wordleWord.color(newList.get(i));
+            boolean remove = true;
+            for(int f = 0; f<5;f++){
+                if(result[f] == 2){
+                    remove = false;
+                }
+            }
+            if(remove){
+                newList.remove(i);
+                i--;
+            }
+        }
+        return newList;
+    }  
+    public void main(String[] args){
+        //Test cases for the color method
+        /*WordleWord word = new WordleWord("eerie");
+        byte [] result = word.color("stare");
+        WordleWord word2 = new WordleWord("roars");
+        byte [] result2 = word2.color("error");
+        WordleWord word3 = new WordleWord("stare");
+        byte [] result3 = word3.color("stare");
+        WordleWord word4 = new WordleWord("teach");
+        byte [] result4 = word4.color("cheat");
+        WordleWord word5 = new WordleWord("error");
+        byte [] result5 = word5.color("waltz");
+        WordleWord word6 = new WordleWord("sassy");
+        byte [] result6 = word6.color("brass");
+        System.out.println(result[0] + " " + result[1] + " " + result[2] + " " + result[3] + " " + result[4]);
+        System.out.println(result2[0] + " " + result2[1] + " " + result2[2] + " " + result2[3] + " " + result2[4]);
+        System.out.println(result3[0] + " " + result3[1] + " " + result3[2] + " " + result3[3] + " " + result3[4]);
+        System.out.println(result4[0] + " " + result4[1] + " " + result4[2] + " " + result4[3] + " " + result4[4]);
+        System.out.println(result5[0] + " " + result5[1] + " " + result5[2] + " " + result5[3] + " " + result5[4]);
+        System.out.println(result6[0] + " " + result6[1] + " " + result6[2] + " " + result6[3] + " " + result6[4]);
+        */
+        //Test cases for the limitArray method
+        ArrayList<String> newList = limitArray("cigar");
+        for(String s : newList){
+            System.out.print(s + ", ");
+        }
+    }
+}
+
+

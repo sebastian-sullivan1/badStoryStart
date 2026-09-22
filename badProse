@@ -29,6 +29,21 @@ public String toString(String solution) {
     WordleWord wordObj = new WordleWord(testWord);
     System.out.println("toString output: " + wordObj.toString("TUMOR"));
 }
+import java.util.ArrayList;
+public class WordleWord {
+    private char[] word;
+    private WordleScan scan;
+    public WordleWord(String word){
+        this.word = new char[5];
+        for(int i = 0; i<5;i++){
+            this.word[i] = word.charAt(i);
+        }
+        this.scan = new WordleScan();
+    }
+    public WordleWord(){
+        this.word = new char[5];
+        this.scan = new WordleScan();
+    }
 
 import java.util.Scanner;
 import java.io.File;
