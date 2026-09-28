@@ -1,8 +1,331 @@
-She had a body that reached out and slapped my face like a ten-pound ham-hock tossed from a speeding truck.
+public class WWord {
+    
+    private char [] word;
+    
+    public WWord(String wd) {
+        word = new char[5];
+        for (byte i = 0; i < 5; i++)
+            word[i] = wd.charAt(i);
+    }
+
+    public char getChar(int i) {
+        return word[i];
+    }
+
+    public int getInt(int i) {
+        return ((int) word[i]) - 97;
+    }
+
+    public String toString() {
+        String str = "";
+        for (byte i = 0; i < 5; i++)
+            str += word[i];
+        return str;
+    }
+
+    public boolean contains(char c) {
+        for (byte i = 0; i < 5; i++) {
+            if (word[i] == c)
+                return true;
+        }
+        return false;
+    }
+
+    public boolean contains(char c, int b) {
+        return word[b] == c;
+    }
+
+    public int Count(char c) {
+        int count = 0;
+        for (byte i = 0; i < 5; i++) {
+            if (word[i] == c)
+                count++;
+        }
+        return count;
+    }
+
+    public boolean twice(char c) {
+        return Count(c) == 2;
+    }
+
+    public boolean thrice(char c) {
+        return Count(c) == 3;
+    }
+
+    public byte[] colors(WWord answer) {
+        byte [] c = new byte[5];
+        byte [] g = new byte[5];
+        byte [] a = new byte[5];
+        for (byte i = 0; i < 5; i++) {
+            g[i] = (byte) this.getChar(i);
+            a[i] = (byte) answer.getChar(i);
+        }
+        for (byte i = 0; i < 5; i++) {
+            if (g[i] == a[i]) {
+                c[i] = 2;
+                g[i] = -1;
+                a[i] = -2;
+            }
+        }
+        for (byte i = 0; i < 5; i++) {
+            for (byte j = 0; j < 5; j++) {
+                if (g[i] == a[j]) {
+                    c[i] = 1;
+                    g[i] = -1;
+                    a[j] = -2;
+                    j = 5;
+                }
+            } 
+        }
+        return c;
+    }
+
+    public int nums () { //converts words into numbers for easier comparison
+        int i = 11111;
+        for (int j = 0; j < 5; j++) {
+            for (int k = j+1; k < 5; k++) {
+                if (word[j] == word[k]) {
+                    i += (int) Math.pow(10, 4-j);
+                    i += (int) Math.pow(10, 4-k);
+                }
+            }
+        }
+        return i;
+    }
+
+    public int[] properties() {
+        int [] p = new int[5];
+        for (int i = 0; i < 5; i++)
+            p[i] = ((int) word[i]) - 97 + i*26;
+        return p;
+    }
+
+    public int [] basicProperties() {
+        int [] p = new int[5];
+        for (int i = 0; i < 5; i++)
+            p[i] = ((int) word[i]) - 97;
+        return p;
+    }
+
+    public static void main(String[] args) {
+        WWord test1 = new WWord("emcee");
+        WWord test2 = new WWord("eerie");
+        WWord test3 = new WWord("abaac");
+        byte[] sol = test1.colors(test2);
+        for (int i = 0; i < sol.length; i++) {
+            System.out.print(sol[i]);
+        }
+        System.out.println();
+        System.out.println(test3.nums());
+        int[] arr = test3.properties();
+        for (int i = 0; i < arr.length; i++)
+            System.out.print(arr[i] + ", ");
+        int [] arr2 = test3.basicProperties();
+        System.out.println();
+        for (int i = 0; i < arr2.length; i++)
+            System.out.print(arr2[i] + ", ");
+    }
+}
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class Wordle {
+    private WWord [] solutionWords;
+    public int [] solutionNums;
+    private WWord [] totalWords;
+    private Sets[] letterLocation;
+    private Sets[] nonLetterLocation;
+    private Sets[] omitted;
+    private Sets[] included;
+    private Sets[] twoTimes;
+    private Sets[] threeTimes;
+
+    public Sets fullSet(int i) {
+        Sets full = new Sets();
+        for (int j = 0; j < i; j++)
+            full.add(j);
+        return full;
+    }
+
+    public Wordle() throws FileNotFoundException {
+        solutionWords = new WWord[2309];
+        solutionNums = new int[2309];
+        totalWords = new WWord[12947];
+
+        File file = new File("/Users/jackjordan/Dev/Java/SolutionWordsWordle.txt");
+        Scanner scanner = new Scanner(file);
+        String input = scanner.nextLine();
+        String onlyLetters = input.replaceAll("[^a-z]", "");
+        for (int i = 0; i < solutionWords.length; i++)
+            solutionWords[i] = new WWord(onlyLetters.substring(i*5, i*5+5));
+        scanner.close();
+
+        File file2 = new File("/Users/jackjordan/Dev/Java/WordleWords.txt");
+        Scanner scanner2 = new Scanner(file2);
+        input = scanner2.nextLine();
+        String onlyLetters2 = input.replaceAll("[^a-z]", "");
+        for (int i = 0; i < totalWords.length; i++)
+            totalWords[i] = new WWord(onlyLetters2.substring(i*5, i*5+5));
+        scanner2.close();
+        for (int i = 0; i < solutionWords.length; i++)
+            solutionNums[i] = solutionWords[i].nums();
+        letterLocation = new Sets[130];
+        for (int i = 0; i < letterLocation.length; i++) {
+            letterLocation[i] = new Sets();
+            for (int j = 0; j < solutionWords.length; j++) {
+                if (solutionWords[j].getChar(i%5) == (char) (i/5 + 97))
+                    letterLocation[i].add(j);
+            }
+        }
+        nonLetterLocation = new Sets[130];
+        for (int i = 0; i < nonLetterLocation.length; i++) {
+            nonLetterLocation[i] = fullSet(solutionWords.length);
+            nonLetterLocation[i] = nonLetterLocation[i].difference(letterLocation[i]);
+        }    
+        omitted = new Sets[26];
+        for (int i = 0; i < omitted.length; i++) {
+            omitted[i] = new Sets();
+            for (int j = 0; j < solutionWords.length; j++) {
+                if (!solutionWords[j].contains((char) (i + 97)))
+                    omitted[i].add(j);
+            }
+        }
+        included = new Sets[26];
+        for (int i = 0; i < included.length; i++) {
+            included[i] = fullSet(solutionWords.length);
+            included[i] = included[i].difference(omitted[i]);
+        }
+        twoTimes = new Sets[26];
+        for (int i = 0; i < twoTimes.length; i++) {
+            twoTimes[i] = new Sets();
+            for (int j = 0; j < solutionWords.length; j++) {
+                if (solutionWords[j].twice((char) (i + 97)))
+                    twoTimes[i].add(j);
+            }
+        }
+        threeTimes = new Sets[26];
+        for (int i = 0; i < threeTimes.length; i++) {
+            threeTimes[i] = new Sets();
+            for (int j = 0; j < solutionWords.length; j++) {
+                if (solutionWords[j].thrice((char) (i + 97)))
+                    threeTimes[i].add(j);
+            }
+        }
+    }
+
+    public Sets occurences(WWord guess, WWord answer) {
+        Sets s = new Sets();
+        byte[] c = guess.colors(answer);
+        if (c[0] == 2)
+            s = letterLocation[guess.getInt(0)*5];
+        else if (c[0] == 1) {
+            for (int i = 1; i < 5; i++) {
+                    s = s.union(letterLocation[guess.getInt(0)*5 + i]);
+            }
+        } else if (guess.nums()/10000 == 1)
+            s = s.union(omitted[guess.getInt(0)]);
+        else {
+            for (int i = 0; i < solutionWords.length; i++)
+                s.add(i);
+        }
+        for (int i = 1; i < c.length; i++) {
+            if (c[i] == 2)
+                s = s.intersection(letterLocation[guess.getInt(i)*5 + i]);
+            else if (c[i] == 1) {
+                 Sets temp = new Sets();
+                for (int j = 0; j < 5; j++) {
+                     if (j != i)
+                        temp = temp.union(letterLocation[guess.getInt(i)*5 + j]);
+
+                }
+                s = s.intersection(temp);
+             } else {
+                s = s.intersection(omitted[guess.getInt(i)]);
+            }
+        }
+        return s;
+    }
+
+    public Sets narrow(Sets og, WWord guess, WWord answer) {
+        Sets ng = new Sets();
+        for (int i = 0; i < og.getSize(); i++) {
+            WWord w = solutionWords[(Integer) og.get(i)];
+            if (guess.colors(answer) == guess.colors(answer))
+                ng.add(og.get(i));
+        }
+        return ng;
+    }
+
+    public double solve(WWord starting) {
+        double avg = 0;
+        //bulk
+        avg = avg/solutionWords.length;
+        return avg;
+    }
+
+    public WWord[] getTW() {
+        return totalWords;
+    }
+
+    public WWord[] getSW() {
+        return solutionWords;
+    }
+
+    public WWord getSolution(int i) {
+        return solutionWords[i];
+    }
+
+    public Sets[] getIncluded() {
+        return included;
+    }
+
+    public static void main(String[] args) throws FileNotFoundException {
+        Wordle W = new Wordle();
+        Sets i = W.getIncluded()[0];
+        WWord[] s = W.getSW();
+        for (int j = 0; j < i.getSize(); j++)
+            System.out.print(s[(Integer) (i.get(j))] + ", ");
+        /*
+        WWord g = new WWord("gamma");
+        WWord a = new WWord("maxim");
+        byte[] ans = g.colors(g, a);
+        for (int i = 0; i < 5; i++)
+            System.out.print(ans[i]);
+        System.out.println();
+        WWord[] solutions = W.getSW();
+        W.guess(g, a);
+
+        LinkedList<Integer> r = W.getRemaining();
+        for (int i = 0; i < r.size(); i++)
+            System.out.print(solutions[r.get(i)] + ", ");
+        System.out.println();
+        System.out.println("Remaining Words: " + r.size());
+
+        boolean[][] PGS = W.createPreGenerateSpecific(9, 9);
+        for (int i = 0; i < PGS.length; i++) {
+            for (int j = 0; j < PGS[i].length; j++)
+                if (PGS[i][j]) {
+                    System.out.print(PGS[i][j] + ", ");
+                    System.out.print(solutions[i].toString() + " Place of Occurence: " + j);
+                }
+        }
+
+        WWord [] total = W.getTW();
+        for (int i = 0; i < total.length; i++)
+           // System.out.print(total[i].toString() + ", ");
+        //System.out.print(W.colors("eerie", "stare").toString());
+        byte ans [] = W.colors("eerie", "stare");
+        System.out.print(ans[0]);
+        System.out.print(ans[1]);
+        System.out.print(ans[2]);
+        System.out.print(ans[3]);
+        System.out.print(ans[4]);*/
+    }
+}
 
 
-Realising that his symptoms indicated a virtually undetectable, fast acting neurotoxin, CIA coroner Quinn Abner frantically wrote up the details, lay on the floor and, as a professional courtesy, did his best to draw a chalk outline of himself. 
-
-
-She was a pretty woman; more specifically she was the kind of pretty woman who had an hourlong skincare routine that made her look either nice or like a glazed donut, depending on how attracted to her you were.   
 
